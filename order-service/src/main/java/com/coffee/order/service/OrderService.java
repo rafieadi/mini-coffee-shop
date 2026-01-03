@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestOperations;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,7 +21,9 @@ public class OrderService {
         this.repository = repository;
         this.productClient = productClient;
     }
-
+    public OrderSummary getOrderSummary(Long id) {
+        return repository.findOrderSummary(id);
+    }
     public OrderResponse create(OrderRequest request) {
 
         Order order = new Order();

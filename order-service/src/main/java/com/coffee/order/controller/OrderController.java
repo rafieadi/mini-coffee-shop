@@ -2,9 +2,12 @@ package com.coffee.order.controller;
 
 import com.coffee.order.dto.OrderRequest;
 import com.coffee.order.dto.OrderResponse;
+import com.coffee.order.dto.OrderSummary;
 import com.coffee.order.model.Order;
 import com.coffee.order.service.OrderService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/orders")
@@ -15,6 +18,11 @@ public class OrderController {
     public OrderController(OrderService service) {
         this.service = service;
     }
+    @GetMapping("/{id}/summary")
+    public OrderSummary summary(@PathVariable Long id) {
+        return service.getOrderSummary(id);
+    }
+
 
     @PostMapping
     public OrderResponse create(@RequestBody OrderRequest order) {
